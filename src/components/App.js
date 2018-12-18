@@ -2,22 +2,28 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import logo from '../assets/logo.svg';
 import './App.css';
-import { simpleAction,complexAction } from '../actions/simpleAction' 
-const mapStateToProps = state => ({
-    ...state
-})
+import { simpleAction,complexAction,renderText } from '../actions/simpleAction' 
+const mapStateToProps = (state) => {
+    //console.log(state.textReducer)
+    return {
+        input: state.textReducer,
+        simple: state.simpleReducer,
+        complex: state.complexReducer
+    }
+    
+}
 
-const mapDispatchToProps = dispatch => ({
-    simpleAction: () => dispatch(simpleAction()),
-    complexAction: () => dispatch(complexAction())
-})
+const mapDispatchToProps = dispatch => {
+    return {
+        simpleAction: () => dispatch(simpleAction()),
+        complexAction: () => dispatch(complexAction()),
+        renderText: (text) => dispatch(renderText(text))
+    }
+    
+}
 
 
 class App extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {input: ""};
-    }
     simpleAction = (event) => {
         this.props.simpleAction();
     } 
@@ -25,7 +31,7 @@ class App extends Component {
         this.props.complexAction();
     }
     handleChange = (event) => {
-        this.setState ({input: event.target.value})
+        this.props.renderText(event.target.value);
     }
  render() {
     return (
@@ -41,8 +47,9 @@ class App extends Component {
                     JSON.stringify(this.props)
                 }
                 </pre>
-                <input type="text" onChange={this.handleChange.bind(this)} value={this.state.input}/>
-                <p>{this.state.input}</p>
+                {/* <input type="text" onChange={this.handleChange.bind(this)} value={this.state.input}/> */}
+                <input type="text" onChange = {this.handleChange.bind(this)}/>
+                <p>{this.props.input}</p>
         </div>
         );
     }

@@ -11,3 +11,10 @@ export const complexAction = () => dispatch => {
         payload: 'result_of_complex_action'
     })
 }
+
+export const renderText = (text) => dispatch => {
+    dispatch({
+        type: 'RENDER_TEXT',
+        payload: text
+    })
+}
