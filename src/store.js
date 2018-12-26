@@ -6,7 +6,8 @@ export default function configureStore(initialState={}) {
     
     store = createStore(
         rootReducer,
-        applyMiddleware(thunk)
+        applyMiddleware(thunk),
+        
     );
     console.log(store.getState());
     return store;

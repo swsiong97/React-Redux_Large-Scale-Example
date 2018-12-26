@@ -4,12 +4,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { simpleAction,complexAction,renderText } from '../actions/simpleAction' 
+import { Translate } from "react-localize-redux";
+
 const mapStateToProps = (state) => {
     //console.log(state.textReducer)
     return {
         input: state.textReducer,
         simple: state.simpleReducer,
-        complex: state.complexReducer
+        complex: state.complexReducer,
+        //translate: getTranslate(state.localize)
+
     }
     
 }
@@ -46,7 +50,9 @@ class Input extends Component {
                 {/* <input type="text" onChange={this.handleChange.bind(this)} value={this.state.input}/> */}
                 <input type="text" onChange = {this.handleChange.bind(this)}/>
                 <p>{this.props.input}</p>
+                <Translate id="welcome.ending"></Translate>
         </div>
+        
         );
     }
 }

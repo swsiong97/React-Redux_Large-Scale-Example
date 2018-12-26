@@ -1,0 +1,6 @@
+{
+    "welcome": {
+      "greeting": ["Hello", "你好", "Hola"],
+      "ending": ["See you", "再见", "nos vemos"]
+    }
+  }

@@ -4,12 +4,17 @@ import { Provider } from 'react-redux'
 import configureStore from './store';
 import './index.css';
 import App from './components/App';
+import { LocalizeProvider } from "react-localize-redux";
+
 //import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
- <Provider store={configureStore()}>
-  <App />
- </Provider>,
+    <LocalizeProvider>
+        <Provider store={configureStore()}>
+            <App />
+        </Provider>
+    </LocalizeProvider>
+ ,
  document.getElementById('root')
 );
 //registerServiceWorker();\
